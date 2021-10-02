@@ -22,6 +22,7 @@ class Game:
         self.m_forward = False
         self.root.bind('s', self.key_event_backward)
         self.m_backward = False
+        self.root.bind('<Motion>',self.motion)
         # init game
         self.mainloop()
 
@@ -46,6 +47,9 @@ class Game:
             self.p_cords[2] -= math.cos(self.p_angles[0] / 80) - 0.5 * 2
             time.sleep(0.1)
         self.m_backward = False
+
+    def motion(self,event):
+        pass
 
     def mainloop(self):
         self.root.wait_visibility(self.root)
