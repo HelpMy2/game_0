@@ -1,0 +1,3 @@
+FOV = 70
+WIDTH = 900
+HEIGHT = 480
