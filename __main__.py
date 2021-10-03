@@ -17,12 +17,13 @@ class Game:
         self.p_angles = [0, 0, 0]
         self.canvas = tk.Canvas(self.root, bg=self.map['void color'], width=WIDTH, height=HEIGHT)
         self.canvas.pack()
+        self.last = (450, 240)
         # init keys
         self.root.bind('w', self.key_event_forward)
         self.m_forward = False
         self.root.bind('s', self.key_event_backward)
         self.m_backward = False
-        self.root.bind('<Motion>',self.motion)
+        self.root.bind('<Motion>', self.motion)
         # init game
         self.mainloop()
 
@@ -48,8 +49,9 @@ class Game:
             time.sleep(0.1)
         self.m_backward = False
 
-    def motion(self,event):
-        pass
+    def motion(self, event):
+        self.p_angles[0] += (self.last[0] - event.x) / WIDTH * 180
+        self.last = event.x, event.y
 
     def mainloop(self):
         self.root.wait_visibility(self.root)
