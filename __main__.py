@@ -33,11 +33,18 @@ class Game:
         while self.root.geometry():
             while time.time() < t + 0.5:
                 if keyboard.is_pressed('w'):
-                    print('w')
+                    if self.m_forward + 0.1 < time.time():
+                        self.m_forward = time.time()
+                        self.p_cords[0] += 0.1
+                elif keyboard.is_pressed('s'):
+                    if self.m_backward + 0.1 < time.time():
+                        self.m_backward = time.time()
+                        self.p_cords[0] -= 0.1
                 self.root.update()
             t = time.time()
             self.flip()
             self.root.update()
+            self.angle_label.configure(text=self.p_angles)
 
     def flip(self):
         self.canvas.delete('all')
