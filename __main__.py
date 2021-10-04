@@ -24,6 +24,8 @@ class Game:
         # init keys
         self.m_forward = time.time()
         self.m_backward = time.time()
+        self.m_left = time.time()
+        self.m_right = time.time()
         # init game
         self.mainloop()
 
@@ -42,6 +44,16 @@ class Game:
                         self.m_backward = time.time()
                         self.p_cords[0] -= math.cos(self.p_angles[0])
                         self.p_cords[2] -= math.sin(self.p_angles[0])
+                if keyboard.is_pressed('a'):
+                    if self.m_left + 0.1 < time.time():
+                        self.m_left = time.time()
+                        self.p_cords[0] -= math.sin(self.p_angles[0])
+                        self.p_cords[2] -= math.cos(self.p_angles[0])
+                elif keyboard.is_pressed('d'):
+                    if self.m_right + 0.1 < time.time():
+                        self.m_right = time.time()
+                        self.p_cords[0] += math.sin(self.p_angles[0])
+                        self.p_cords[2] += math.cos(self.p_angles[0])
                 self.root.update()
             t = time.time()
             self.flip()
