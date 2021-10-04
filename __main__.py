@@ -35,11 +35,13 @@ class Game:
                 if keyboard.is_pressed('w'):
                     if self.m_forward + 0.1 < time.time():
                         self.m_forward = time.time()
-                        self.p_cords[0] += 0.1
+                        self.p_cords[0] += math.cos(self.p_angles[0])
+                        self.p_cords[2] += math.sin(self.p_angles[0])
                 elif keyboard.is_pressed('s'):
                     if self.m_backward + 0.1 < time.time():
                         self.m_backward = time.time()
-                        self.p_cords[0] -= 0.1
+                        self.p_cords[0] -= math.cos(self.p_angles[0])
+                        self.p_cords[2] -= math.sin(self.p_angles[0])
                 self.root.update()
             t = time.time()
             self.flip()
